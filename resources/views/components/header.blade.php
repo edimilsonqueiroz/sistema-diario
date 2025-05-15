@@ -17,9 +17,11 @@
                         <a class="w-full ml-1" href="{{route('dashboard')}}">Home</a>
                     </li>
                 </ul>
-               @can('admin-secretaria')
-                <div class="bg-slate-700 text-slate-200 pl-4 mt-5 mb-2 py-2 font-semibold">CADASTRO</div>
+                    @can('admin-secretaria')
+                    <div class="bg-slate-700 text-slate-200 pl-4 mt-5 mb-2 py-2 font-semibold">CADASTRO</div>
+                    @endcan
                     <ul class="w-full px-3 text-gray-100 text-lg font-semibold">
+                        @can('admin-secretaria')
                         <li class="hover:bg-gray-300 w-full flex items-center @if($page == 'User') my-1 bg-gray-300 text-gray-700 @endif hover:text-gray-700 rounded-md p-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
@@ -34,6 +36,8 @@
 
                             <a wire:navigate class="w-full ml-1" href="{{route('escolas')}}">Escolas</a>
                         </li>
+                        @endcan
+                        @can('secretaria')
                         <li class="hover:bg-gray-300 flex items-center @if($page == 'Classes') my-1 bg-gray-300 text-gray-700 @endif w-full hover:text-gray-700 rounded-md p-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z" />
@@ -41,6 +45,7 @@
 
                             <a wire:navigate class="w-full ml-1" href="{{route('turmas')}}">Turmas</a>
                         </li>
+                        
                         <li class="hover:bg-gray-300 flex items-center @if($page == 'Student') my-1 bg-gray-300 text-gray-700 @endif w-full hover:text-gray-700 rounded-md p-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.776c.112-.017.227-.026.344-.026h15.812c.117 0 .232.009.344.026m-16.5 0a2.25 2.25 0 0 0-1.883 2.542l.857 6a2.25 2.25 0 0 0 2.227 1.932H19.05a2.25 2.25 0 0 0 2.227-1.932l.857-6a2.25 2.25 0 0 0-1.883-2.542m-16.5 0V6A2.25 2.25 0 0 1 6 3.75h3.879a1.5 1.5 0 0 1 1.06.44l2.122 2.12a1.5 1.5 0 0 0 1.06.44H18A2.25 2.25 0 0 1 20.25 9v.776" />
@@ -48,9 +53,10 @@
 
                             <a wire:navigate class="w-full ml-1" href="{{route('matriculas')}}">Matrículas</a>
                         </li>
+                        @endcan
                     </ul>
-                @endcan
-                @can('secretaria')
+                
+                @can('plus')
                 <div class="bg-slate-700 text-slate-200 pl-4 my-2 py-2 font-semibold">MOVIMENTO</div>
                 <ul class="w-full px-3 text-gray-100 text-lg font-semibold">
                     <li class="hover:bg-gray-300 w-full flex items-center @if($page == 'MovimentoTurmas') my-1 bg-gray-300 text-gray-700 @endif hover:text-gray-700 rounded-md p-3">
@@ -62,6 +68,8 @@
                     </li>
                 </ul>
                 @endcan
+
+                <!--
                 @can('professor')
                 <div class="bg-slate-700 text-slate-200 pl-4 my-2 py-2 font-semibold">MINHAS TURMAS</div>
                 <ul class="w-full px-3 text-gray-100 text-lg font-semibold">
@@ -75,6 +83,8 @@
                     </li>
                 </ul>
                 @endcan
+                -->
+
                 @can('coordenador')
                 <div class="bg-slate-700 text-slate-200 pl-4 my-2 py-2 font-semibold">ACOMPANHAMENTO</div>
                 <ul class="w-full px-3 text-gray-100 text-lg font-semibold">

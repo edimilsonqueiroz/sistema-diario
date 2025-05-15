@@ -25,6 +25,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->isAdmin || $user->isAdministrativo;
         });
 
+        Gate::define('plus', function(User $user){
+            return $user->isProfessor || $user->isCoordenador || $user->isAdministrativo;
+        });
+
         Gate::define('professor', function(User $user){
             return $user->isProfessor;
         });
@@ -33,6 +37,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->isAdministrativo;
         });
 
+    
         Gate::define('coordenador', function(User $user){
             return $user->isCoordenador;
         });
