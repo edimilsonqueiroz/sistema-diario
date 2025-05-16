@@ -21,6 +21,7 @@ use App\Livewire\TurmaFrequencia;
 use App\Livewire\TurmaNota;
 use App\Livewire\DisciplineNote;
 use App\Livewire\DisciplineContent;
+use App\Livewire\TurmaRelatorios;
 use App\Livewire\ValidateCode;
 use App\Http\Controllers\PdfController;
 
@@ -38,7 +39,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::get('/schools', EscolaController::class)->name('escolas');
     Route::get('/classes', TurmaController::class)->name('turmas');
 
-    Route::get('/moviment/class/{turma}/discipline/{discipline}/content', DisciplineContent::class)->name('discipline-contents');
+    
     
     Route::get('/moviment', MovimentoTurmas::class)->name('movimento-turmas');
     Route::get('/moviment/class/{turma}', TurmaRegistro::class)->name('turma-registro');
@@ -48,7 +49,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::get('/moviment/class/{turma}/teacher', TurmaProfessor::class)->name('turma-teacher');
     Route::get('/moviment/class/{turma}/notes', TurmaNota::class)->name('turma-note');
     Route::get('/moviment/class/{turma}/discipline/{discipline}/notes', DisciplineNote::class)->name('discipline-notes');
-    
+    Route::get('/moviment/class/{turma}/discipline/{discipline}/content', DisciplineContent::class)->name('discipline-contents');
+    Route::get('/moviment/class/{turma}/reports', TurmaRelatorios::class)->name('turma-relatorios');
     Route::get('/moviment/class/{turma}/disciplines', TurmaDisciplina::class)->name('turma-disciplines');
     Route::get('/registration', MatriculaController::class)->name('matriculas');
 });
