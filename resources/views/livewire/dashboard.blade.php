@@ -36,21 +36,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="grid w-full md:grid-cols-2 mt-5 gap-5 md:gap-2 grid-cols-1">
-                <div class="md:h-80 bg-slate-100 shadow-md rounded-md">
-                    {!! $chartBar->render() !!}
-                </div>
-                <div class="md:h-80 flex flex-col bg-slate-100 shadow-md rounded-md">
-                    <p class="text-center">MATRÍCULAS ATIVAS POR TURMA</p>
-                    <div class="flex-1">{!! $chartPier->render() !!}</div>
-                </div>
-            </div>
-            <div class="grid w-full md:grid-cols-1 mt-5 gap-5 md:gap-2 grid-cols-1">
-                <div class="md:h-80 bg-slate-100 shadow-md rounded-md">
-                    {!! $chartLine->render() !!}
-                </div>
-            </div>   
     </div>
     @include('components/footer')
 </div>
