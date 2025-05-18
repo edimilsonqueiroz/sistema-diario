@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
 {
@@ -38,8 +39,8 @@ class Student extends Model
         return $this->belongsToMany(Discipline::class);
     }
 
-    public function notes(): HasMany
+    public function notes(): HasOne
     {
-        return $this->hasMany(Note::class);
+        return $this->hasOne(Note::class);
     }
 }

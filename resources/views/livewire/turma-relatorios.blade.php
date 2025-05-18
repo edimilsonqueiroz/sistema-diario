@@ -44,7 +44,7 @@
             <div class="grid grid-cols-1 gap-3 md:grid-cols-2">
                 <div class="col-span-1 flex flex-col">
                     <label for="">Diário:</label>
-                    <select class="border-2 border-gray-300 rounded-md px-2 py-3 outline-none">
+                    <select wire:model="tipo_diario" class="border-2 border-gray-300 rounded-md px-2 py-3 outline-none">
                         <option value="">Selecione uma diário</option>
                         <option value="frequencia">Diário de frequência</option>
                         <option value="conteudo">Diário de conteudo</option>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-span-1 flex flex-col">
                     <label for="">Disciplina:</label>
-                    <select class="border-2 border-gray-300 rounded-md px-2 py-3 outline-none">
+                    <select wire:model="discipline" class="border-2 border-gray-300 rounded-md px-2 py-3 outline-none">
                         <option value="">Selecione uma disciplina</option>
                         @foreach($turma->disciplines()->get() as $discipline)
                         <option value="{{$discipline->id}}">{{$discipline->name}}</option>

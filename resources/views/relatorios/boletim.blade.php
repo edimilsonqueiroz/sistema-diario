@@ -51,20 +51,18 @@
     <h1>BOLETIM ESCOLAR</h1>
     <table class="tabela-identidade">
         <tr>
-            @foreach($student->turmas()->get() as $turma_school)
-            @foreach($turma_school->school()->get() as $school)
+            @foreach($turma->school()->get() as $school)
             <td style="text-align: left; border:0;"><b style="margin-left: 0;">ESCOLA:</b> {{$school->name}}</td>
             @endforeach
-            @endforeach
-            @foreach($student->turmas()->get() as $turma_ano)
-            <td style="text-align: left; border:0;"><b>ANO LETIVO:</b> {{$turma_ano->year}}</td>
-            @endforeach
+            
+            <td style="text-align: left; border:0;"><b>ANO LETIVO:</b>{{$turma->year}} </td>
+            
         </tr>
         <tr>
             <td style="text-align: left; border:0;"><b style="margin-left: 0;">NOME DO ALUNO:</b>{{$student->name}}</td>
-            @foreach($student->turmas()->get() as $turma)
+            
             <td style="text-align: left; border:0;"><b>TURMA:</b> {{$turma->name}}</td>
-            @endforeach
+            
         </tr>
     </table>
     <table class="tabela-boletim" style="width:100%">
@@ -74,6 +72,7 @@
             <td colspan="2">2º BIMESTRE</td>
             <td colspan="2">3º BIMESTRE</td>
             <td colspan="2">4º BIMESTRE</td>
+            <td colspan="2" rowspan="2">MEDIA FINAL</td>
         </tr>
         <tr>
             <td>NOTA</td>
@@ -85,39 +84,29 @@
             <td>NOTA</td>
             <td>FALTA</td>
         </tr>
+        @foreach($notas as $nota)
         <tr>
-            <td style="text-align: left; padding-left: 5px;">Lingua Portuguesa</td>
-            <td>8,5</td>
-            <td>2</td>
-            <td>7,5</td>
-            <td>0</td>
-            <td>7,5</td>
-            <td>0</td>
-            <td>7,5</td>
-            <td>0</td>
+            <td style="text-align: left; padding-left: 5px;">{{$nota->discipline()->first()->name}}</td>
+           
+            <td>{{$nota->bimonthly_1}}</td><!-- NOTA -->
+            <td>2</td><!-- FALTA -->
+            
+          
+            <td>{{$nota->bimonthly_2}}</td><!-- NOTA -->
+            <td>2</td><!-- FALTA -->
+           
+            
+            <td>{{$nota->bimonthly_3}}</td><!-- NOTA -->
+            <td>1</td><!-- FALTA -->
+          
+          
+            <td>{{$nota->bimonthly_4}}</td><!-- NOTA -->
+            <td>2</td><!-- FALTA -->
+          
+            <td colspan="2">{{$nota->average}}</td>
+           
         </tr>
-        <tr>
-            <td style="text-align: left; padding-left: 5px;">Matemática</td>
-            <td>8,5</td>
-            <td>2</td>
-            <td>7,5</td>
-            <td>0</td>
-            <td>7,5</td>
-            <td>0</td>
-            <td>7,5</td>
-            <td>0</td>
-        </tr>
-        <tr>
-            <td style="text-align: left; padding-left: 5px;">História</td>
-            <td>8,5</td>
-            <td>2</td>
-            <td>7,5</td>
-            <td>0</td>
-            <td>7,5</td>
-            <td>0</td>
-            <td>7,5</td>
-            <td>0</td>
-        </tr>
+        @endforeach
     </table>
 
 </body>

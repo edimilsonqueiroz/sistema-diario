@@ -5,19 +5,26 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Models\Student;
+use App\Models\Turma;
+use App\Models\Note;
 
 class ImprimirRelatorios extends Controller
 {
     public function boletim(Request $request)
     {
-        $student = Student::find($request->student)->get();
+        $student = Student::where('id',$request->student)->first();
+        $turma = Turma::where('id', $request->turma)->first();
+        $notas = Note::where('student_id', $student->id)->where('turma_id', $turma->id)->get();
 
-        $boletim = Pdf::loadView('relatorios.boletim',[
-            'student' => $student
+        $pdf = Pdf::loadView('relatorios.boletim',[
+            'student' => $student,
+            'turma' => $turma,
+            'notas' => $notas
         ]);
-        return $boletim->stream();
+
         
         
+        return $pdf->download('SISEDU-DIARIO - Boletim '.$student->name.'.pdf');
     }
 
     public function historico()

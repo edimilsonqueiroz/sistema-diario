@@ -20,6 +20,8 @@ class TurmaRelatorios extends Component
      public $student_boletim = "";
      public $student_historico = "";
      public $student_declaracao = "";
+     public $tipo_diario = "";
+     public $discipline = "";
 
      #[On('close-modal')] 
     public function resetForm()
@@ -28,6 +30,8 @@ class TurmaRelatorios extends Component
         $this->student_boletim = "";
         $this->student_historico = "";
         $this->student_declaracao = "";
+        $this->tipo_diario = "";
+        $this->discipline = "";
     }
 
     public function mount(Turma $turma)
@@ -35,15 +39,24 @@ class TurmaRelatorios extends Component
         $this->turma = $turma;
     }
 
-    public function printReports()
+    public function printFrequencia()
     {
-        $this->redirectRoute('diario-conteudos');
+
+    }
+
+    public function printDiarios()
+    {
+        if($this->tipo_diario =="conteudo"){
+            //$this->redirectRoute('diario-conteudos');
+        }else{
+            //$this->redirectRoute('diario-frequencia');
+        }
     }
 
     public function reportBoletim()
     {
         
-        $this->redirectRoute('relatorio-boletim', ["student" => $this->student_boletim]);
+        $this->redirectRoute('relatorio-boletim', ["student" => $this->student_boletim, "turma" => $this->turma->id]);
         $this->student_boletim = "";
     }
 
