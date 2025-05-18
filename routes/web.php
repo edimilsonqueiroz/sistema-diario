@@ -24,6 +24,8 @@ use App\Livewire\DisciplineContent;
 use App\Livewire\TurmaRelatorios;
 use App\Livewire\ValidateCode;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ImprimirDiarios;
+use App\Http\Controllers\ImprimirRelatorios;
 
 
 Route::get('/', LoginController::class)->name('login');
@@ -38,7 +40,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::get('/users', UserController::class)->name('users');
     Route::get('/schools', EscolaController::class)->name('escolas');
     Route::get('/classes', TurmaController::class)->name('turmas');
-
     
     
     Route::get('/moviment', MovimentoTurmas::class)->name('movimento-turmas');
@@ -53,4 +54,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function(){
     Route::get('/moviment/class/{turma}/reports', TurmaRelatorios::class)->name('turma-relatorios');
     Route::get('/moviment/class/{turma}/disciplines', TurmaDisciplina::class)->name('turma-disciplines');
     Route::get('/registration', MatriculaController::class)->name('matriculas');
+    Route::get('/reports/contents',[ImprimirDiarios::class, 'conteudos'])->name('diario-conteudos');
+    Route::get('/reports/frequency',[ImprimirDiarios::class, 'frequencia'])->name('diario-frequencia');
+    Route::get('/reports/boletim', [ImprimirRelatorios::class, 'boletim'])->name('relatorio-boletim');
+    Route::get('/reports/historico', [ImprimirRelatorios::class, 'historico'])->name('relatorio-historico');
+
 });

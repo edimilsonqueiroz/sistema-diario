@@ -7,13 +7,13 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class ImprimirDiarios extends Controller
 {
-    public function conteudos(Request $request)
+    public function conteudos()
     {
         $conteudos = Pdf::loadView('relatorios.conteudo');
         return $conteudos->stream();
     }
 
-    public function frequencia(Request $request)
+    public function frequencia()
     {
         $frequencia = Pdf::loadView('relatorios.frequencia');
         return $frequencia->stream();

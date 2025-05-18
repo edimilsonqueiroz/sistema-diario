@@ -15,21 +15,21 @@
                 </svg>
                 <h1>Imprimir Diários</h1>
             </button>
-            <button class="col-span-1 md:w-64 h-20 rounded-md bg-slate-300 flex flex-col items-center justify-center">
+            <button x-data x-on:click="$dispatch('open-modal', { name: 'imprimir-boletim' })" class="col-span-1 md:w-64 h-20 rounded-md bg-slate-300 flex flex-col items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z" />
                 </svg>
 
                 <h1>Imprimir Boletim</h1>
             </button>
-            <button class="col-span-1 md:w-64 h-20 rounded-md bg-slate-300 flex flex-col items-center justify-center">
+            <button x-data x-on:click="$dispatch('open-modal', { name: 'imprimir-historico' })" class="col-span-1 md:w-64 h-20 rounded-md bg-slate-300 flex flex-col items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
                 </svg>
 
                 <h1>Histórico Escolar</h1>
             </button>
-            <button class="col-span-1 md:w-64 h-20 rounded-md bg-slate-300 flex flex-col items-center justify-center">
+            <button x-data x-on:click="$dispatch('open-modal', { name: 'imprimir-declaracao' })" class="col-span-1 md:w-64 h-20 rounded-md bg-slate-300 flex flex-col items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-10">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
                 </svg>
@@ -63,7 +63,82 @@
         </x-slot>
         <x-slot:footer>
                 <div x-on:click="$dispatch('close-modal')" class="bg-slate-400 rounded-md px-3 py-1 cursor-pointer border-2 border-slate-400"><i class="bi bi-x-circle"></i> Fechar</div>
-                <button type="submit" class="bg-teal-600 border-2 border-teal-600 ml-2 rounded-md px-3 py-1"><i class="bi bi-check2-circle"></i> Imprimir</button>
+                <button wire:click="printReports" type="submit" class="bg-teal-600 border-2 border-teal-600 ml-2 rounded-md px-3 py-1"><i class="bi bi-check2-circle"></i> Imprimir</button>
+        </x-slot:footer>
+     </x-modal.modal-md>
+
+     <!--MODAL DE IMPRIMIR BOLETIM-->
+     <x-modal.modal-md name="imprimir-boletim" title="Boletim">
+        <x-slot:body>
+            <div class="flex flex-col">
+                <input wire:model.live="query" class="border-2 p-2 border-gray-300 rounded-md outline-0" type="text" placeholder="Pesquisar pelo nome">
+                <fieldset class="border-2 p-2 w-full border-gray-300 rounded-md">
+                    <legend class="text-center p-2">Selecionar um aluno</legend>
+                    <div class="flex flex-col gap-2">
+                        @foreach($students as $student)
+                        <div class="bg-slate-300 w-full p-2 flex items-center rounded-md">
+                            <input wire:model="student_boletim" value="{{$student->id}}" name="student" class="w-5 h-5 mr-2" type="radio">
+                            <div>{{$student->name}}</div>
+                        </div>
+                        @endforeach
+                    </div>
+                </fieldset>
+
+            </div>
+        </x-slot>
+        <x-slot:footer>
+                <div x-on:click="$dispatch('close-modal')" class="bg-slate-400 rounded-md px-3 py-1 cursor-pointer border-2 border-slate-400"><i class="bi bi-x-circle"></i> Fechar</div>
+                <button wire:click="reportBoletim" type="submit" class="bg-teal-600 border-2 border-teal-600 ml-2 rounded-md px-3 py-1"><i class="bi bi-check2-circle"></i> Imprimir</button>
+        </x-slot:footer>
+     </x-modal.modal-md>
+
+     <!--MODAL DE IMPRIMIR HISTORICO-->
+     <x-modal.modal-md name="imprimir-historico" title="Imprimir Historico Escolar">
+        <x-slot:body>
+            <div class="flex flex-col">
+                <input wire:model.live="query" class="border-2 p-2 border-gray-300 rounded-md outline-0" type="text" placeholder="Pesquisar pelo nome">
+                <fieldset class="border-2 p-2 w-full border-gray-300 rounded-md">
+                    <legend class="text-center p-2">Selecionar um aluno</legend>
+                    <div class="flex flex-col gap-2">
+                        @foreach($students as $student)
+                        <div class="bg-slate-300 w-full p-2 flex items-center rounded-md">
+                            <input wire:model="student_historico" value="{{$student->id}}" name="student" class="w-5 h-5 mr-2" type="radio">
+                            <div>{{$student->name}}</div>
+                        </div>
+                        @endforeach
+                    </div>
+                </fieldset>
+
+            </div>
+        </x-slot>
+        <x-slot:footer>
+                <div x-on:click="$dispatch('close-modal')" class="bg-slate-400 rounded-md px-3 py-1 cursor-pointer border-2 border-slate-400"><i class="bi bi-x-circle"></i> Fechar</div>
+                <button wire:click="reportBoletim" type="submit" class="bg-teal-600 border-2 border-teal-600 ml-2 rounded-md px-3 py-1"><i class="bi bi-check2-circle"></i> Imprimir</button>
+        </x-slot:footer>
+     </x-modal.modal-md>
+
+      <!--MODAL DE IMPRIMIR DECLARAÇÃO-->
+     <x-modal.modal-md name="imprimir-declaracao" title="Imprimir Declaração de Matricula">
+        <x-slot:body>
+            <div class="flex flex-col">
+                <input wire:model.live="query" class="border-2 p-2 border-gray-300 rounded-md outline-0" type="text" placeholder="Pesquisar pelo nome">
+                <fieldset class="border-2 p-2 w-full border-gray-300 rounded-md">
+                    <legend class="text-center p-2">Selecionar um aluno</legend>
+                    <div class="flex flex-col gap-2">
+                        @foreach($students as $student)
+                        <div class="bg-slate-300 w-full p-2 flex items-center rounded-md">
+                            <input wire:model="student_declaracao" value="{{$student->id}}" name="student" class="w-5 h-5 mr-2" type="radio">
+                            <div>{{$student->name}}</div>
+                        </div>
+                        @endforeach
+                    </div>
+                </fieldset>
+
+            </div>
+        </x-slot>
+        <x-slot:footer>
+                <div x-on:click="$dispatch('close-modal')" class="bg-slate-400 rounded-md px-3 py-1 cursor-pointer border-2 border-slate-400"><i class="bi bi-x-circle"></i> Fechar</div>
+                <button wire:click="reportBoletim" type="submit" class="bg-teal-600 border-2 border-teal-600 ml-2 rounded-md px-3 py-1"><i class="bi bi-check2-circle"></i> Imprimir</button>
         </x-slot:footer>
      </x-modal.modal-md>
 @include('components/footer')
