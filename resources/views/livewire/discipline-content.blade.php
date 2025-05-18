@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="p-1 flex gap-3">
-                            <button wire:click="openModalEdit" class="text-xl font-semibold"><i class="bi bi-pencil-square"></i></button>
+                            <button wire:click="openModalEdit({{$content->id}})" class="text-xl font-semibold"><i class="bi bi-pencil-square"></i></button>
                         </div>
                     </div>
                     @endforeach

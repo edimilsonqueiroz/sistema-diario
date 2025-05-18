@@ -20,6 +20,7 @@ class DisciplineContent extends Component
     public Turma $turma;
     public Discipline $discipline;
     public ContentForm $form;
+    public Content $content;
 
     public $query = '';
 
@@ -35,16 +36,28 @@ class DisciplineContent extends Component
         //$this->form->reset();
     }
 
-    public function openModalEdit()
+    public function openModalEdit(Content $content)
     {
+        $this->content = $content;
         $this->dispatch('open-modal', name: 'editar-conteudo');
     }
 
     public function save()
     {
-        //$this->form->store();
+        $this->form->setTurmaDiscipline($this->turma, $this->discipline);
+        $this->form->store();
         $this->dispatch('close-modal', name:'cadastrar-conteudo');
         $this->dispatch('open-modal', name: 'registrar-frequencia');
+        $this->alert('success', 'Conteudo cadastrado com sucesso!',[
+            'position' => 'top',
+            'toast' => true,
+            'width' => 380
+        ]);
+    }
+
+    public function update()
+    {
+        
     }
 
     #[Title('SISEDU-DIÁRIO - Disciplina Conteudo')]

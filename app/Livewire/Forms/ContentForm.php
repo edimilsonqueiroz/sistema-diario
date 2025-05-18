@@ -40,12 +40,13 @@ class ContentForm extends Form
         $this->turma_id = $this->content->turma->id;
         $this->discipline_id = $this->content->discipline_id;
         $this->bimonthly = $this->content->bimonthly;
-        $this->date = date('Y-m-d', strtotime($this->content->date));
+        $this->date = $this->content->date;
         $this->conteudo = $this->content->content;
     }
 
     public function store()
     {
+        
         $this->validate();
         Content::create([
             'school_id' => $this->school_id,
