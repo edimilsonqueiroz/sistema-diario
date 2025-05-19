@@ -24,7 +24,7 @@ class ImprimirRelatorios extends Controller
 
         
         
-        return $pdf->download('SISEDU-DIARIO - Boletim '.$student->name.'.pdf');
+        return $pdf->stream('SISEDU-DIARIO - Boletim '.$student->name.'.pdf');
     }
 
     public function historico()

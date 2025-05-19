@@ -35,6 +35,31 @@
         b{
             margin: 20px;
         }
+
+        .assinaturas{
+            width: 100%;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .assinatura_coordenador{
+            width: 40%;
+            border-top: 2px solid #ccc;
+            text-align: center;
+            float: left;
+            margin: 10px;
+        }
+
+        .assinatura_secretario{
+            border-top: 2px solid #ccc;
+            width: 40%;
+            text-align: center;
+            float: right;
+            margin: 10px;
+        }
+        .clear{
+            clear: both;
+        }
         
     </style>
 </head>
@@ -89,25 +114,29 @@
             <td style="text-align: left; padding-left: 5px;">{{$nota->discipline()->first()->name}}</td>
            
             <td>{{$nota->bimonthly_1}}</td><!-- NOTA -->
-            <td>2</td><!-- FALTA -->
+            <td></td><!-- FALTA -->
             
           
             <td>{{$nota->bimonthly_2}}</td><!-- NOTA -->
-            <td>2</td><!-- FALTA -->
+            <td></td><!-- FALTA -->
            
             
             <td>{{$nota->bimonthly_3}}</td><!-- NOTA -->
-            <td>1</td><!-- FALTA -->
+            <td></td><!-- FALTA -->
           
           
             <td>{{$nota->bimonthly_4}}</td><!-- NOTA -->
-            <td>2</td><!-- FALTA -->
+            <td></td><!-- FALTA -->
           
             <td colspan="2">{{$nota->average}}</td>
            
         </tr>
         @endforeach
     </table>
-
+        <div class="assinaturas">
+            <div class="assinatura_coordenador">Assinatura do Coordenador</div>
+            <div class="assinatura_secretario">Assinatura do Secretário</div>
+        </div>
+        <div class="clear"></div>
 </body>
 </html>
